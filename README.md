@@ -1,3 +1,15 @@
+# Electron-React-MUI-App
+
+Starting point sample that runs Electron app with React framework & MUI components.
+
+## Start electron app
+
+### `npm run dev`
+
+
+## Below are default React scripts
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +80,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
