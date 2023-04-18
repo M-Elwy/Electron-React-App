@@ -1,33 +1,46 @@
 const path = require('path');
-
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const isDev = require('electron-is-dev');
 
-console.log('electron.js ran');
+let mainWindow;
 function createWindow() {
   // Create the browser window.
-  const win = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    /*autoHideMenuBar: true,*/
     webPreferences: {
       nodeIntegration: true,
+      preload: path.join(__dirname, 'preload.js')
     },
   });
 
   // and load the index.html of the app.
-  // win.loadFile("index.html");
-  win.loadURL(
+  // mainWindow.loadFile("index.html");
+  mainWindow.loadURL(
     isDev
       ? 'http://localhost:3000'
       : `file://${path.join(__dirname, '../build/index.html')}`
   );
   // Open the DevTools.
   if (isDev) {
-    win.webContents.openDevTools({ mode: 'detach' });
+    mainWindow.webContents.openDevTools({ mode: 'detach' });
   }
 }
 
+ipcMain.on('togglepin', (event, isPinned) => {
+  togglePin(isPinned);
+})
 
+function togglePin(isPinned) {
+  if (isPinned) {
+    mainWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
+    mainWindow.setAlwaysOnTop(true, 'screen-saver', 1)
+    mainWindow.moveTop();
+  } else {
+    mainWindow.setAlwaysOnTop(false)
+  }
+}
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.

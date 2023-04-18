@@ -2,6 +2,10 @@
 
 Starting point sample that runs Electron app with React framework & MUI components.
 
+## Install dependencies
+
+### `npm install`
+
 ## Start electron app
 
 ### `npm run dev`
