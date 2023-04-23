@@ -1,6 +1,9 @@
 const path = require('path');
 const { app, BrowserWindow, ipcMain } = require('electron');
 const isDev = require('electron-is-dev');
+require('electron-reload')(__dirname, {  
+  electron: require(path.join(__dirname, '..', 'node_modules', 'electron'))
+});
 
 let mainWindow;
 function createWindow() {
